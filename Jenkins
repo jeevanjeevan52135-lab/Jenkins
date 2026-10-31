@@ -1,1 +1,28 @@
-
+pipeline{
+    agent any 
+    
+    stages{
+        stage ("Welcome"){
+            steps{
+                echo 'Welcome'
+                sh 'whoami'
+                sh 'date'
+                sh 'hostname'
+            }
+        }
+        stage ('build'){
+            steps{
+                echo 'Application Builded'
+                sh 'pwd'
+            }
+        }
+    }
+    post{
+        success{
+            echo 'pipeline is completed'
+        }
+        failure{
+            echo 'pipeline failed'
+        }
+    }
+}
